@@ -122,12 +122,10 @@ Installation
 
     bash
 
-git clone <url_du_dépôt>
-cd <nom_du_dépôt>
+git clone https://github.com/ITrackU/kryptodoc.git
+cd kryptodoc
 
 Installez les dépendances:
-
-bash
 
     pip install cryptography
 
@@ -138,43 +136,11 @@ Créer le fichier de configuration
 
 Lors de la première exécution, le programme vous demandera si vous souhaitez créer un fichier de configuration par défaut:
 
-bash
-
 python main.py
-
-Vous pouvez également créer le fichier de configuration manuellement:
-
-python
-
-def create_config_file():
-    config_file_path = os.path.expanduser("~/.krypt/krypt.config")
-    if os.path.exists(config_file_path):
-        restore_default_config = input("Un fichier de configuration existe déjà. Voulez-vous rétablir la configuration par défaut ? (oui/non): ").lower()
-        if restore_default_config in ["oui", "yes"]:
-            os.remove(config_file_path)
-        else:
-            return
-    base_directory = os.path.expanduser("~/.krypt")
-    directories = {
-        'host_keys_directory': os.path.join(base_directory, "keys/host_keys"),
-        'remote_keys_directory': os.path.join(base_directory, "keys/remote_keys"),
-        'to_send_directory': os.path.join(base_directory, "to_send"),
-        'received_directory': os.path.join(base_directory, "received")
-    }
-    ensure_directory_exists(directories['host_keys_directory'])
-    ensure_directory_exists(directories['remote_keys_directory'])
-    ensure_directory_exists(directories['to_send_directory'])
-    ensure_directory_exists(directories['received_directory'])
-    config = configparser.ConfigParser()
-    config['directories'] = directories
-    with open(config_file_path, 'w') as configfile:
-        config.write(configfile)
 
 Utilisation
 
 Lancez le programme:
-
-bash
 
 python main.py
 
